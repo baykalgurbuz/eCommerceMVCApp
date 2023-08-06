@@ -1,8 +1,7 @@
-﻿
-@model IEnumerable<Actor>
+﻿@model IEnumerable<Producer>
 
 @{
-    ViewData["Title"] = "List of Actors";
+    ViewData["Title"] = "List of Producers";
 }
 
 <div class="row">
@@ -19,9 +18,9 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr class="text-center">
+                    <tr>
                         <td class="align-middle">
-                            <img class="rounded-circle" src="@item.ProfilePictureURL" alt="@item.FullName" style="max-width:150px"/>
+                            <img class="rounded-circle" src="@item.ProfilePictureURL" alt="@item.FullName" style="max-width:150px" />
                         </td>
                         <td class="align-middle">
                             @Html.DisplayFor(modelItem =>item.FullName)
@@ -34,7 +33,7 @@
                             <a class="btn btn-outline-infı"><i class="bi bi-eye"></i>Details</a>
                             <a class="btn btn-danger text-white"><i class="bi bi-pencil-trash"></i>Delete</a>
                         </td>
-               
+
                     </tr>
                 }
             </tbody>

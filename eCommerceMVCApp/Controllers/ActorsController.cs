@@ -1,19 +1,21 @@
 ﻿using eCommerceMVCApp.Data;
+using eCommerceMVCApp.Data.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace eCommerceMVCApp.Controllers
 {
     public class ActorsController : Controller
     {
-        private readonly AppDbContext _context;
-        public ActorsController(AppDbContext context)
+        private readonly IActorServices _services;
+        public ActorsController(IActorServices services)
         {
-            _context = context;
+            _services = services;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var data =_context.Actors.ToList();
+            var data =await _services.GetAll();
             return View(data);
         }
     }
