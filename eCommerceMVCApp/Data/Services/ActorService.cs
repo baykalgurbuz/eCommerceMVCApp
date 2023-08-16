@@ -13,33 +13,38 @@ namespace eCommerceMVCApp.Data.Services
         {
             _context = context;
         }
-        public Actor ActorGetById(int id)
+        public async Task<Actor> ActorGetByIdAsync(int id)
         {
-            throw new System.NotImplementedException();
+            var result = await _context.Actors.FirstOrDefaultAsync(x => x.Id == id);
+            return result;
         }
 
-        public void Add(Actor actor)
+        public async Task AddAsync(Actor actor)
         {
-            _context.Actors.Add(actor);
-            _context.SaveChanges();
+            await _context.Actors.AddAsync(actor);
+            await _context.SaveChangesAsync();
         }
 
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
-            throw new System.NotImplementedException();
+            var result = await _context.Actors.FirstOrDefaultAsync(x => x.Id == id);
+            _context.Actors.Remove(result);
+            await _context.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<Actor>> GetAll()
         {
-            var result =await _context.Actors.ToListAsync();
+            var result = await _context.Actors.ToListAsync();
             return result;
         }
 
-        public Actor Update(int id, Actor newActor)
+        public async Task<Actor> UpdateAsync(int id, Actor newActor)
         {
-            throw new System.NotImplementedException();
+            _context.Update(newActor);
+            await _context.SaveChangesAsync();
+            return newActor;
         }
 
-      
+
     }
 }
