@@ -13,11 +13,7 @@ namespace eCommerceMVCApp.Data.Services
         {
             _context = context;
         }
-        public async Task<Actor> ActorGetByIdAsync(int id)
-        {
-            var result = await _context.Actors.FirstOrDefaultAsync(x => x.Id == id);
-            return result;
-        }
+       
 
         public async Task AddAsync(Actor actor)
         {
@@ -32,11 +28,7 @@ namespace eCommerceMVCApp.Data.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Actor>> GetAll()
-        {
-            var result = await _context.Actors.ToListAsync();
-            return result;
-        }
+       
 
         public async Task<Actor> UpdateAsync(int id, Actor newActor)
         {
